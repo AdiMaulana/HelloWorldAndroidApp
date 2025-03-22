@@ -17,6 +17,99 @@ Ini adalah aplikasi Android sederhana yang dikembangkan sebagai bagian dari tuga
 - **Kerangka UI**: Jetpack Compose
 - **Alat Bangun**: Gradle
 
+## Struktur Proyek
+
+Struktur proyek ini mengikuti konvensi standar untuk aplikasi Android. Berikut adalah komponen utama dari struktur proyek:
+
+### 1. Folder `manifests`
+- **AndroidManifest.xml**: File ini berisi informasi penting tentang aplikasi, seperti nama aplikasi, ikon, tema, dan izin yang diperlukan (misalnya, akses internet, kamera, dll.).
+
+### 2. Folder `java`
+- Folder ini berisi kode sumber aplikasi Anda. Biasanya, ada subfolder yang sesuai dengan nama paket yang Anda tetapkan saat membuat proyek (misalnya, `com.example.helloworld`). Di dalamnya terdapat file utama seperti:
+  - **MainActivity.kt**: Kelas utama yang berfungsi sebagai titik masuk aplikasi.
+
+### 3. Folder `res`
+Folder ini menyimpan semua sumber daya non-kode yang digunakan dalam aplikasi:
+- **drawable**: Menyimpan gambar dan ikon yang digunakan dalam aplikasi.
+- **layout**: Berisi file XML untuk mendefinisikan tata letak antarmuka pengguna (UI), seperti `activity_main.xml`.
+- **mipmap**: Menyimpan ikon aplikasi dengan berbagai resolusi untuk mendukung berbagai perangkat.
+- **values**: Berisi file seperti:
+  - **colors.xml**: Mendefinisikan warna yang digunakan dalam aplikasi.
+  - **strings.xml**: Menyimpan teks yang digunakan dalam aplikasi untuk mendukung internasionalisasi.
+  - **styles.xml**: Mendefinisikan gaya dan tema untuk elemen UI.
+
+### 4. Folder `Gradle Scripts`
+Folder ini berisi file konfigurasi Gradle yang digunakan untuk membangun dan mengelola proyek Anda. Berikut adalah dua file utama yang biasanya ditemukan di sini:
+
+#### a. **build.gradle (Project Level)**
+File ini berisi konfigurasi build untuk seluruh proyek.
+
+#### b. **build.gradle (Module Level)**
+File ini berisi konfigurasi spesifik untuk modul aplikasi (biasanya modul `app`). Di sini Anda dapat menentukan dependensi yang diperlukan oleh aplikasi, pengaturan versi SDK, dan pengaturan spesifik lainnya.
+
+### Contoh Konten `build.gradle` (Module Level)
+
+``plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+}
+
+android {
+    namespace = "com.ridexone.taskhelloworld"
+    compileSdk = 35
+
+    defaultConfig {
+        applicationId = "com.ridexone.taskhelloworld"
+        minSdk = 26
+        targetSdk = 35
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+    buildFeatures {
+        compose = true
+    }
+}
+
+dependencies {
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.constraintlayout)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
+}```
+
 ## Cara Memulai
 
 Untuk menjalankan proyek ini secara lokal, ikuti langkah-langkah berikut:
