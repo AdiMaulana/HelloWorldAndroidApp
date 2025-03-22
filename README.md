@@ -68,6 +68,29 @@ Tunggu hingga proses Gradle selesai. Ini mungkin memakan waktu beberapa menit.
 ### 6. Atur Layout `activity_main.xml`
 Buka file `activity_main.xml` yang terletak di `res/layout`. Tambahkan kode berikut untuk menampilkan teks "Hello World!":
 
+```<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:textSize="30sp"
+        android:textStyle="bold"
+    android:gravity="center"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
 ### 7. Menjalankan Aplikasi di Android Emulator
 Setelah Anda selesai membuat proyek "Hello World", Anda dapat menjalankannya di emulator
 Pilih jenis perangkat yang ingin Anda buat (misalnya, Phone) dan pilih model perangkat (misalnya, Pixel 5).
